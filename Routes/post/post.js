@@ -2,6 +2,7 @@ const express = require("express");
 const userVerify = require("../middlewares/userverify");
 const { User } = require("../../models/usermodel");
 const Post = require("../../models/postmodel");
+const mongoose = require("mongoose");
 
 const postRouter = express.Router();
 // CREATING API FOR ADDING THE POST
@@ -37,6 +38,19 @@ postRouter.get("/get-all-post" , userVerify , async(req , res)=>{
         console.log(error);
     }
 });
+
+
+postRouter.post("/get-post-comment" , userVerify , async(req , res)=>{
+    try {
+        let post = await Post.find({_id:req.query.postid});
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({error:error.message});
+    }
+});
+
+
+
 
 // CREATING API FOR GETTING THE CURRENT USER POSTS
 
