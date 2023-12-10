@@ -36,6 +36,6 @@ responseRouter.post("/register-response" , userVerify , async(req , res)=>{
         }
     })
 
-    // CREATING API FOR GETTING ALL THE TASK FOR ADMIN ONLY
+ 
 
 module.exports = responseRouter;

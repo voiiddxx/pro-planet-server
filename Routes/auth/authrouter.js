@@ -3,7 +3,7 @@ const { User } = require("../../models/usermodel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-
+ 
 const authRouter = express.Router();
 
 // === CREATTING ROUTE FOR REGISTERING THE USER ==== //

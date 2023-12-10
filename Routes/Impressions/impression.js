@@ -9,24 +9,27 @@ const impressionRouter = express.Router();
     impressionRouter.post("/like-user-post" , userVerify, async(req,res)=>{
         try {
             const {postid} = req.body; 
-            let user = await User.findById(req.user);
+            let Existinguser = await User.findById(req.user);
+            
             let post = await Post.findById(postid);
             console.log(post.likes.length);
+          
             let found = false;
             
                 for(let i =0;i<post.likes.length;i++){
-                    if(post.likes[i].user.username==user.username){
+                    if(post.likes[i].user.username==Existinguser.username){
                         found = true;
                     }
                 }
+                console.log(found);
                 if(found){
-                    await post.likes.remove({user:user});
+                    await post.likes.remove({user:Existinguser});
                 }
                 else{
-                    await post.likes.push({user:user});
+                    await post.likes.push({user:Existinguser});
                 }
                 await post.save();
-            res.json(post);
+            res.json(post.likes.length);
         } catch (error) {
             res.status(500).json({error:error.message});
         }
