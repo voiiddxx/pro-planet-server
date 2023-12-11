@@ -43,7 +43,7 @@ postRouter.get("/get-all-post" , userVerify , async(req , res)=>{
 postRouter.get("/get-post-comment" , userVerify , async(req , res)=>{
     try {
         let post = await Post.find({_id:req.query.postid});
-        res.json(post);
+        res.json(post[0].comment);
     } catch (error) {
         res.status(500).json({error:error.message});
     }
