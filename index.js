@@ -11,6 +11,7 @@ const approveRouter = require("./Routes/approval/approve");
 const responseRouter = require("./Routes/tasks/Respose");
 const rankingRouter = require("./Routes/ranking/rankingrouter");
 const impressionRouter = require("./Routes/Impressions/impression");
+const eventRouter = require("./Routes/events/event");
 
 const PORT = process.env.PORT|| 5000;
 const app = express();
@@ -46,6 +47,7 @@ app.use(approveRouter);
 app.use(responseRouter);
 app.use(rankingRouter);
 app.use(impressionRouter);
+app.use(eventRouter);
 
 
 
