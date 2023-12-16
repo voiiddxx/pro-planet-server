@@ -27,5 +27,17 @@ eventRouter.post("/add-event" , userVerify , async(req,res)=>{
     } catch (error) {
         return res.status(500).json({error:error.message});
     }
+});
+
+
+eventRouter.get("/events" , userVerify , async (req , res)=>{
+    try {
+
+        let event = await Event.find({});
+        res.json(event);
+        
+    } catch (error) {
+        res.status(500).json({error:error.message});
+    }
 })
 module.exports = eventRouter;
