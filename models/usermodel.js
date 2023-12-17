@@ -34,6 +34,9 @@ const userSchema = mongoose.Schema({
         type:String,
         default:"user"
     },
+    company:{
+        type:String,
+    },
     ques:[
         {
             question:{

@@ -10,7 +10,7 @@ const authRouter = express.Router();
 
 authRouter.post("/register" , async  (req , res)=>{
    try {
-    const {username  , email , password , userprofile , pro_planet_level , follower , following , posts , pro_planet_rating , total_completed_task , category } = req.body;
+    const {username  , email , password , userprofile , pro_planet_level , follower , following , posts , pro_planet_rating , total_completed_task , category , company } = req.body;
 
     const Existingusername = await User.findOne({username});
     const ExistEmail = await User.findOne({email});
@@ -37,6 +37,7 @@ authRouter.post("/register" , async  (req , res)=>{
             pro_planet_rating,
             total_completed_task,
             category,
+            company,
         });
         user =await user.save();
         res.json(user);

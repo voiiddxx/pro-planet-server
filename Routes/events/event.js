@@ -8,7 +8,7 @@ const eventRouter = express.Router();
 
 eventRouter.post("/add-event" , userVerify , async(req,res)=>{
     try {
-        const {event_title , event_details ,event_organization, event_date , event_link , event_image , event_location} = req.body;
+        const {event_title , event_details ,event_organization, event_date , event_link , event_image , event_location , additinols_details} = req.body;
         let user = await User.findById(req.user);
         
         let event = new Event({
@@ -19,6 +19,7 @@ eventRouter.post("/add-event" , userVerify , async(req,res)=>{
             event_link,
             event_location,
             event_image,
+            additinols_details,
             user
         });
 
