@@ -24,7 +24,7 @@ const eventSchema = mongoose.Schema({
     event_image:{
         type:String,
     },
-    event_extra_detail:{
+    additinols_details:{
         type:String
     },
     user:userSchema,

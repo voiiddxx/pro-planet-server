@@ -36,25 +36,31 @@ const approveRouter = express.Router();
         try {
             const {userid , task_level , submitid}= req.body;
          let user = await User.findById(userid);
+         let prev = user.pro_planet_rating;
+
+         let neededcointolevelup = 1000-prev;
+         let proplanetaddingvalue = 0;
+
+
          if(task_level==="Medium"){
             user.pro_planet_rating+=100;
+            proplanetaddingvalue = 100;
+
+
          }
          if(task_level==="Easy"){
             user.pro_planet_rating+=50;
+            proplanetaddingvalue =50;
          }
          if(task_level==="Hard"){
             user.pro_planet_rating+=200;
+            proplanetaddingvalue = 200;
          }
 
-         if(user.pro_planet_rating>700){
+         if(proplanetaddingvalue >= neededcointolevelup){
             user.pro_planet_level+=1;
          }
-         if(user.pro_planet_rating > 900){
-            user.pro_planet_level+=1;
-         }
-         if(user.pro_planet_level>1000){
-            user.pro_planet_level+=1;
-         }
+
 
          user.total_completed_task+=1;
 
