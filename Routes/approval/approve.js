@@ -38,6 +38,14 @@ const approveRouter = express.Router();
          let user = await User.findById(userid);
          let prev = user.pro_planet_rating;
 
+
+         if(prev<1000){
+            neededcointolevelup = 1000-prev;
+         }
+         else{
+            let coinswehave = prev-1000;
+            neededcointolevelup = 1000-coinswehave;
+         }
          let neededcointolevelup = 1000-prev;
          let proplanetaddingvalue = 0;
 
@@ -60,7 +68,7 @@ const approveRouter = express.Router();
          if(proplanetaddingvalue >= neededcointolevelup){
             user.pro_planet_level+=1;
          }
-
+ 
 
          user.total_completed_task+=1;
 
