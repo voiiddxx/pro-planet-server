@@ -35,10 +35,13 @@ const approveRouter = express.Router();
     approveRouter.post("/approve-weekly-task" , userVerify , async(req,res)=>{
         try {
             const {userid , task_level , submitid}= req.body;
+            
          let user = await User.findById(userid);
          let prev = user.pro_planet_rating;
+         let neededcointolevelup = 1000-prev;
+         let proplanetaddingvalue = 0;
 
-
+            
          if(prev<1000){
             neededcointolevelup = 1000-prev;
          }
@@ -46,8 +49,7 @@ const approveRouter = express.Router();
             let coinswehave = prev-1000;
             neededcointolevelup = 1000-coinswehave;
          }
-         let neededcointolevelup = 1000-prev;
-         let proplanetaddingvalue = 0;
+      
 
 
          if(task_level==="Medium"){
@@ -76,6 +78,7 @@ const approveRouter = express.Router();
          await user.save();
         res.json(user);
         } catch (error) {
+            console.log(error);
             res.status(500).json({error:error.messsege});
         }
     });
