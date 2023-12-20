@@ -12,7 +12,6 @@ const impressionRouter = express.Router();
             let Existinguser = await User.findById(req.user);
             
             let post = await Post.findById(postid);
-            console.log(post.likes.length);
           
             let found = false;
             
@@ -55,7 +54,17 @@ const impressionRouter = express.Router();
 
 
 
+// GETTING LIKES USER FOR PARTICULAR POSTS
 
+impressionRouter.post("/get-liked-user" , userVerify , async (req , res)=>{
+    try {
+        const {postid} = req.body;
+        let post = await Post.findById(postid);
+        res.json(post.likes);
+    } catch (error) {
+        return res.status(500).json({error:error.message});
+    }
+})
 
 //   CREATING API FOR FOLLOWING AND UNFOLLOWING THE USER
     impressionRouter.post("/follow-unfollow" , userVerify , async(req , res)=>{
