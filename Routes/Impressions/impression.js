@@ -75,5 +75,7 @@ impressionRouter.post("/get-liked-user" , userVerify , async (req , res)=>{
         } catch (error) {
             return res.status(500).json({error:error.message});
         }
-    })
+    });
+
+    
 module.exports = impressionRouter;

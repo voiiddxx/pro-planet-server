@@ -13,6 +13,7 @@ const rankingRouter = require("./Routes/ranking/rankingrouter");
 const impressionRouter = require("./Routes/Impressions/impression");
 const eventRouter = require("./Routes/events/event");
 const applyadminRouter = require("./Routes/applyadminrouter");
+const proplanetRouter = require("./Routes/proplanetperson/proplanetperson");
 
 const PORT = process.env.PORT|| 5000;
 const app = express();
@@ -50,6 +51,7 @@ app.use(rankingRouter);
 app.use(impressionRouter);
 app.use(eventRouter);
 app.use(applyadminRouter);
+app.use(proplanetRouter);
 
 
 
